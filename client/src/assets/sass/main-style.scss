@@ -1,4 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
 //*-*-*-*-*-*-*-*-*-*-- The 1300px Mark Break Point*-*-*-*-*-*-*-*-*-*-*
 @mixin media-desktop {
   @media screen and (min-width: break-point(break-point-desktop)) {
@@ -32,18 +31,18 @@
   background-color: var(--color-primary);
 }
 
-@import "assets/sass/1.reset";
-@import "assets/sass/2.variables";
-@import "assets/sass/3.utilities";
-@import "assets/sass/11.register";
-//   @import "-4.header";
-//   @import "-5.showcase";
-//   @import "-6.motto";
-//   @import "-7.features";
-//   @import "-8.trainers";
-//   @import "-9.testimonials";
-//   @import "-10.clients";
-//   @import "-12.footer";
+@import "1.reset";
+@import "2.variables";
+@import "3.utilities";
+@import "4.header";
+@import "5.showcase";
+@import "6.motto";
+@import "7.features";
+@import "8.trainers";
+@import "9.testimonials";
+@import "10.clients";
+@import "11.register";
+@import "12.footer";
 
 // *-*-*-*-*-*-*-*-*-*-*-*-*-*-*- Placeholder Styles *-*-*-*-*-*-*-*-*-*-*-*-*
 // Background Properties
@@ -92,7 +91,7 @@
   right: 4rem;
   height: 4rem;
   width: 4rem;
-  background-image: url("./assets/img/scroll/scroll.svg");
+  background-image: url("../img/scroll/scroll.svg");
   background-repeat: no-repeat;
   background-color: var(--color-secondary-m);
   background-size: contain;
