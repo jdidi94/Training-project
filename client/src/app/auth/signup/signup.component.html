@@ -1,12 +1,12 @@
 <section class="register">
     <!-- Register Progress -->
-    <div class="register__progress">
+    <div  class="register__progress">
       <div class="register__progress--step">
         <span>1</span>
         <i class="fa fa-check"></i>
       </div>
 
-      <div class="register__progress--step">
+      <div class="register__progress--step" >
         <span>2</span>
         <i class="fa fa-check"></i>
       </div>
@@ -22,21 +22,21 @@
       </div>
     </div>
      <!-- Register Content -->
-     <div class="register__content">
-        <div class="register__content--form">
+     <div    [formGroup]="checkoutForm" class="register__content">
+        <div  class="register__content--form">
           <!-- *-*-*-*-*-*-* First Page Starts Here *-*-*-*-*-*-*-*-* -->
 
-          <div class="register__content--form__page">
+          <div  class="register__content--form__page">
             <!-- First Name -->
             <div class="register__content--form__page--field">
               <label for="first-name">First Name</label>
-              <input type="text" />
+              <input name="first-name" minlength="4"   type="text" formControlName="firstName"   required />
             </div>
 
             <!-- Last Name -->
             <div class="register__content--form__page--field">
               <label for="last-name">Last Name</label>
-              <input type="text" />
+              <input name="last-name" minlength="4"  formControlName="lastName"  type="text"    required />
             </div>
 
             <!-- Next Button -->
@@ -49,13 +49,18 @@
             <!-- Email Address -->
             <div class="register__content--form__page--field">
               <label for="email-address">Email Address</label>
-              <input type="email" />
+              <input type="email"
+              name="email-address" minlength="4"  formControlName="email"required
+               />
             </div>
 
             <!-- Phone Number -->
             <div class="register__content--form__page--field">
               <label for="phone-number">Phone Number</label>
-              <input type="number" />
+              <input 
+              type="number" 
+              formControlName="number"
+              name="phone-number"/>
             </div>
 
             <!-- Next Button -->
@@ -72,13 +77,17 @@
             <!-- Data of Birth -->
             <div class="register__content--form__page--field">
               <label for="date-of-birth">Data of Birth</label>
-              <input type="text" />
+              <input type="text" 
+              formControlName="dateOfBirth"
+              name="date-of-birth"
+              />
             </div>
 
             <!-- Gender -->
             <div class="register__content--form__page--field">
               <label for="gender">Gender</label>
-              <select>
+              <select   formControlName="gender"
+              name="gender">
                 <option value="female">Female</option>
                 <option value="male">Male</option>
                 <option value="other">Other</option>
@@ -92,17 +101,19 @@
             </div>
           </div>
           <div class="register__content--form__page">
-            <!-- Username -->
-            <div class="register__content--form__page--field">
-              <label for="usernaame">Username</label>
-              <input type="text" />
-            </div>
-
-            <!-- Password -->
+          
+         <!-- Password -->
             <div class="register__content--form__page--field">
               <label for="password">Password</label>
-              <input type="password" />
+              <input formControlName="password"
+              name="password" type="password" />
             </div>
+              <!-- Username -->
+              <div class="register__content--form__page--field">
+                <label for="repeatPassword">Repeat Password</label>
+                <input formControlName="repeatPassword"
+                name="repeatPassword" type="password"  />
+              </div>
 
             <!-- Next Button -->
             <div class="register__content--form__page--field btns">
