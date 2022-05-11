@@ -57,11 +57,11 @@
   &__content {
     width: 28rem;
     margin-top: 2rem;
-    overflow: hidden;
+    // overflow: hidden;
 
     &--form {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       width: 400%;
 
       &__page {

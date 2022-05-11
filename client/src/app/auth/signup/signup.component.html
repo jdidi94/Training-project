@@ -1,32 +1,17 @@
 <section class="register">
-    <!-- Register Progress -->
+<!-- Register Progress -->
     <div  class="register__progress">
-      <div class="register__progress--step">
-        <span>1</span>
+      <div   *ngFor="let nextDiv of nextDivs" class="register__progress--step">
+        <span [ngClass]="{'active': show===nextDiv}">{{nextDiv}}</span>
         <i class="fa fa-check"></i>
       </div>
-
-      <div class="register__progress--step" >
-        <span>2</span>
-        <i class="fa fa-check"></i>
-      </div>
-
-      <div class="register__progress--step">
-        <span>3</span>
-        <i class="fa fa-check"></i>
-      </div>
-
-      <div class="register__progress--step">
-        <span>4</span>
-        <i class="fa fa-check"></i>
-      </div>
-    </div>
+</div>
      <!-- Register Content -->
-     <div    [formGroup]="checkoutForm" class="register__content">
+     <div   [formGroup]="checkoutForm" class="register__content">
         <div  class="register__content--form">
           <!-- *-*-*-*-*-*-* First Page Starts Here *-*-*-*-*-*-*-*-* -->
 
-          <div  class="register__content--form__page">
+          <div *ngIf="show===1" class="register__content--form__page">
             <!-- First Name -->
             <div class="register__content--form__page--field">
               <label for="first-name">First Name</label>
@@ -34,18 +19,18 @@
             </div>
 
             <!-- Last Name -->
-            <div class="register__content--form__page--field">
+            <div  class="register__content--form__page--field">
               <label for="last-name">Last Name</label>
               <input name="last-name" minlength="4"  formControlName="lastName"  type="text"    required />
             </div>
 
             <!-- Next Button -->
-            <div class="register__content--form__page--field">
-              <button class="next-1 next">Next</button>
+            <div  class="register__content--form__page--field">
+              <button (click)="changeDivNext()" class="next-1 next">Next</button>
             </div>
           </div>
           
-          <div class="register__content--form__page">
+          <div *ngIf="show===2" class="register__content--form__page">
             <!-- Email Address -->
             <div class="register__content--form__page--field">
               <label for="email-address">Email Address</label>
@@ -55,7 +40,7 @@
             </div>
 
             <!-- Phone Number -->
-            <div class="register__content--form__page--field">
+            <div   class="register__content--form__page--field">
               <label for="phone-number">Phone Number</label>
               <input 
               type="number" 
@@ -65,15 +50,17 @@
 
             <!-- Next Button -->
             <div class="register__content--form__page--field btns">
-              <button class="prev-1 prev">Previous</button>
-              <button class="next-2 next">Next</button>
+              <button (click)="changeDivPrevious()" class="prev-1 prev">Previous</button>
+              <button (click)="changeDivNext()" class="next-2 next">Next</button>
             </div>
           </div>
           <!-- *-*-*-*-*-*-* Second Page Ends Here *-*-*-*-*-*-*-*-* -->
 
           <!-- *-*-*-*-*-*-* Third Page Starts Here *-*-*-*-*-*-*-*-* -->
 
-          <div class="register__content--form__page">
+          <div 
+          *ngIf="show===3" 
+        class="register__content--form__page" >
             <!-- Data of Birth -->
             <div class="register__content--form__page--field">
               <label for="date-of-birth">Data of Birth</label>
@@ -96,17 +83,17 @@
 
             <!-- Next Button -->
             <div class="register__content--form__page--field btns">
-              <button class="prev-2 prev">Previous</button>
-              <button class="next-3 next">Next</button>
+              <button (click)="changeDivPrevious()" class="prev-2 prev">Previous</button>
+              <button (click)="changeDivNext()" class="next-3 next">Next</button>
             </div>
           </div>
-          <div class="register__content--form__page">
+          <div   class="register__content--form__page" *ngIf="show===4" >
           
          <!-- Password -->
             <div class="register__content--form__page--field">
               <label for="password">Password</label>
               <input formControlName="password"
-              name="password" type="password" />
+              name="password" type="password" required minlength="6"/>
             </div>
               <!-- Username -->
               <div class="register__content--form__page--field">
@@ -117,7 +104,7 @@
 
             <!-- Next Button -->
             <div class="register__content--form__page--field btns">
-              <button class="prev-3 prev">Previous</button>
+              <button  (click)="changeDivPrevious()" class="prev-3 prev">Previous</button>
               <button class="submit">Submit</button>
             </div>
           </div>
