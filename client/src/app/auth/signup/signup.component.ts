@@ -10,13 +10,13 @@ export class SignupComponent implements OnInit {
   nextDivs:number[]=[1,2,3,4]
   show:number=1
   checkoutForm = new FormGroup({
-    firstName:new FormControl('',Validators.required), 
-    lastName: new FormControl('',Validators.required),
+    firstName:new FormControl('',[Validators.required,Validators.minLength(4),Validators.pattern(/^[a-zA-Z ,.'-]+$/i)]), 
+    lastName: new FormControl('',[Validators.required,Validators.minLength(4),Validators.pattern(/^[a-zA-Z ,.'-]+$/i)]),
     email:new FormControl('',[Validators.required,Validators.email]),
-    number:new FormControl('',Validators.required),
-    dateOfBirth:new FormControl('',Validators.required),
+    number:new FormControl('',[Validators.required,Validators.minLength(8)]),
+    dateOfBirth:new FormControl('',[Validators.required,Validators.pattern("^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d$")]),
     gender:new FormControl('',Validators.required),
-    password: new FormControl('',[Validators.required]),
+    password: new FormControl('',[Validators.required,Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"),Validators.maxLength(30)]),
     repeatPassword:new FormControl('',Validators.required),
 
   });
@@ -26,7 +26,7 @@ export class SignupComponent implements OnInit {
     }
 
   ngOnInit(): void {
- console.log(this.checkoutForm.get("firstName"))
+
   }
   changeDivNext(){
 if(this.show <4&& this.ProgressForm ){
@@ -47,5 +47,29 @@ if(this.show <4&& this.ProgressForm ){
       }
  onSubmit(){
 
+}
+get FirstName():FormControl{
+  return this.checkoutForm.get("firstName") as FormControl;
+}
+get LastName():FormControl{
+  return this.checkoutForm.get("lastName") as FormControl;
+}
+get Email():FormControl{
+  return this.checkoutForm.get("email") as FormControl;
+}
+get Number():FormControl{
+  return this.checkoutForm.get("number") as FormControl;
+}
+get DateOfBirth():FormControl{
+  return this.checkoutForm.get("dateOfBirth") as FormControl;
+}
+get Gender():FormControl{
+  return this.checkoutForm.get("gender") as FormControl;
+}
+get Password():FormControl{
+  return this.checkoutForm.get("password") as FormControl;
+}
+get RepeatPassword():FormControl{
+  return this.checkoutForm.get("repeatPassword") as FormControl;
 }
 }

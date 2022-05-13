@@ -79,7 +79,14 @@
           label {
             font-size: 2rem;
           }
-
+          .notes{
+            color:red;
+            font-size: 1rem;
+          }
+          .notes_right{
+            color:green;
+            font-size: 1rem;
+          }
           input,
           select {
             height: 100%;

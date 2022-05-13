@@ -15,13 +15,22 @@
             <!-- First Name -->
             <div class="register__content--form__page--field">
               <label for="first-name">First Name</label>
-              <input name="first-name" minlength="4"   type="text" formControlName="firstName"   required />
+              <input name="first-name"  type="text" formControlName="firstName" />
+              <span class="notes" *ngIf="FirstName.errors?.['required']&& (FirstName.touched || FirstName.dirty)">First name is required </span>
+              <span *ngIf="FirstName.errors?.['minlength']&& (FirstName.touched || FirstName.dirty)"class="notes">Minimum 4 characters</span>
+              <span *ngIf="FirstName.errors?.['pattern']&& (FirstName.touched || FirstName.dirty)"class="notes">First Name should contain only letters</span>
+              <span *ngIf="!FirstName.invalid" class="notes_right">Great</span>
             </div>
+            
 
             <!-- Last Name -->
             <div  class="register__content--form__page--field">
               <label for="last-name">Last Name</label>
-              <input name="last-name" minlength="4"  formControlName="lastName"  type="text"    required />
+              <input name="last-name"  formControlName="lastName"  type="text"  />
+              <span class="notes" *ngIf="LastName.errors?.['required']&& (LastName.touched || LastName.dirty)">Last name is required </span>
+              <span *ngIf="LastName.errors?.['minlength']&& (LastName.touched || LastName.dirty)"class="notes">Minimum 4 characters</span>
+              <span *ngIf="LastName.errors?.['pattern']&& (LastName.touched || LastName.dirty)"class="notes">Last Name should contain only letters</span>
+              <span *ngIf="!LastName.invalid" class="notes_right">Great</span>
             </div>
 
             <!-- Next Button -->
@@ -35,8 +44,11 @@
             <div class="register__content--form__page--field">
               <label for="email-address">Email Address</label>
               <input type="email"
-              name="email-address" minlength="4"  formControlName="email"required
+              name="email-address"  formControlName="email"
                />
+               <span class="notes" *ngIf="Email.errors?.['required']&& (Email.touched || Email.dirty)">Email is required </span>
+               <span class="notes" *ngIf="Email.errors?.['email']&& (Email.touched || Email.dirty)">Email is invalid </span>
+               <span *ngIf="!Email.invalid" class="notes_right">Great</span>
             </div>
 
             <!-- Phone Number -->
@@ -46,6 +58,8 @@
               type="number" 
               formControlName="number"
               name="phone-number"/>
+              <span class="notes" *ngIf="Number.errors?.['required']&& (Number.touched || Number.dirty)">Number is required </span>
+              <span *ngIf="Number.errors?.['minlength']&& (Number.touched || Number.dirty)"class="notes">Minimum 8 numbers</span>
             </div>
 
             <!-- Next Button -->
@@ -64,10 +78,13 @@
             <!-- Data of Birth -->
             <div class="register__content--form__page--field">
               <label for="date-of-birth">Data of Birth</label>
-              <input type="text" 
+              <input type="text" placeholder="mm/dd/yyyy"
               formControlName="dateOfBirth"
               name="date-of-birth"
               />
+              <span class="notes" *ngIf="DateOfBirth.errors?.['required']&& (DateOfBirth.touched || DateOfBirth.dirty)">Date of birth is required </span>
+              <span *ngIf="DateOfBirth.errors?.['pattern']&& (DateOfBirth.touched || DateOfBirth.dirty)"class="notes_right">Date of birth should be mm/dd/yyyy </span>
+              <span *ngIf="!DateOfBirth.invalid"class="notes">Great </span>
             </div>
 
             <!-- Gender -->
@@ -79,6 +96,8 @@
                 <option value="male">Male</option>
                 <option value="other">Other</option>
               </select>
+              <span *ngIf="Gender.errors?.['required']" class="notes">Enter your gender </span>
+              
             </div>
 
             <!-- Next Button -->
@@ -93,13 +112,19 @@
             <div class="register__content--form__page--field">
               <label for="password">Password</label>
               <input formControlName="password"
-              name="password" type="password" required minlength="6"/>
+              name="password" type="password"/>
+              <span class="notes" *ngIf="Password.errors?.['required']&& (Password.touched || Password.dirty)">Password is required </span>
+               <span class="notes" *ngIf="Password.errors?.['pattern']&& (Password.touched || Password.dirty)">Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.</span>
+               <span *ngIf="!Password.invalid" class="notes_right">Great</span>
             </div>
               <!-- Username -->
               <div class="register__content--form__page--field">
                 <label for="repeatPassword">Repeat Password</label>
                 <input formControlName="repeatPassword"
                 name="repeatPassword" type="password"  />
+                <span class="notes" *ngIf="Password.errors?.['required']&& (Password.touched || Password.dirty)">Please! confirm password.</span>
+                <span class="notes" *ngIf="Password.value !== RepeatPassword.value && (Password.touched || Password.dirty)">please repeat correctly your password </span>
+                <span class="notes_right" *ngIf="Password.value === RepeatPassword.value ">matched</span>
               </div>
 
             <!-- Next Button -->
