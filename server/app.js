@@ -15,7 +15,7 @@ const mongoUri = process.env.mongoUri;
 app.use(morgan("combined"));
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["http://localhost:4000"],
     methods: ["PUT", "POST", "GET", "PATCH"],
     credentials: true,
   })
@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-var isProduction = process.env.NODE_ENV === "production";
+const isProduction = process.env.NODE_ENV === "production";
 const db = mongoose.connect(
   mongoUri,
   { useNewUrlParser: true, useUnifiedTopology: true },

@@ -1,9 +1,9 @@
 <section class="register">
 <!-- Register Progress -->
     <div  class="register__progress">
-      <div   *ngFor="let nextDiv of nextDivs" class="register__progress--step">
-        <span [ngClass]="{'active': show===nextDiv}">{{nextDiv}}</span>
-        <i class="fa fa-check"></i>
+      <div [ngClass]="{'active': show===nextDiv}"  *ngFor="let nextDiv of nextDivs" class="register__progress--step">
+        <span >{{nextDiv}}</span>
+        
       </div>
 </div>
      <!-- Register Content -->
@@ -35,7 +35,7 @@
 
             <!-- Next Button -->
             <div  class="register__content--form__page--field">
-              <button (click)="changeDivNext()" class="next-1 next">Next</button>
+              <button *ngIf="!FirstName.invalid && !LastName.invalid" (click)="changeDivNext()" class="next-1 next">Next</button>
             </div>
           </div>
           
@@ -64,8 +64,8 @@
 
             <!-- Next Button -->
             <div class="register__content--form__page--field btns">
-              <button (click)="changeDivPrevious()" class="prev-1 prev">Previous</button>
-              <button (click)="changeDivNext()" class="next-2 next">Next</button>
+              <button  (click)="changeDivPrevious()" class="prev-1 prev">Previous</button>
+              <button *ngIf="!Number.invalid && !Email.invalid"  (click)="changeDivNext()" class="next-2 next">Next</button>
             </div>
           </div>
           <!-- *-*-*-*-*-*-* Second Page Ends Here *-*-*-*-*-*-*-*-* -->
@@ -83,8 +83,8 @@
               name="date-of-birth"
               />
               <span class="notes" *ngIf="DateOfBirth.errors?.['required']&& (DateOfBirth.touched || DateOfBirth.dirty)">Date of birth is required </span>
-              <span *ngIf="DateOfBirth.errors?.['pattern']&& (DateOfBirth.touched || DateOfBirth.dirty)"class="notes_right">Date of birth should be mm/dd/yyyy </span>
-              <span *ngIf="!DateOfBirth.invalid"class="notes">Great </span>
+              <span *ngIf="DateOfBirth.errors?.['pattern']&& (DateOfBirth.touched || DateOfBirth.dirty)"class="notes">Date of birth should be mm/dd/yyyy </span>
+              <span  *ngIf="!DateOfBirth.invalid"class="notes_right">Great </span>
             </div>
 
             <!-- Gender -->
@@ -103,7 +103,7 @@
             <!-- Next Button -->
             <div class="register__content--form__page--field btns">
               <button (click)="changeDivPrevious()" class="prev-2 prev">Previous</button>
-              <button (click)="changeDivNext()" class="next-3 next">Next</button>
+              <button *ngIf="!Gender.invalid && !DateOfBirth.invalid" (click)="changeDivNext()" class="next-3 next">Next</button>
             </div>
           </div>
           <div   class="register__content--form__page" *ngIf="show===4" >
@@ -130,7 +130,7 @@
             <!-- Next Button -->
             <div class="register__content--form__page--field btns">
               <button  (click)="changeDivPrevious()" class="prev-3 prev">Previous</button>
-              <button class="submit">Submit</button>
+              <button  *ngIf="!Password.invalid && !RepeatPassword.invalid && Password.value === RepeatPassword.value" class="submit">Submit</button>
             </div>
           </div>
 

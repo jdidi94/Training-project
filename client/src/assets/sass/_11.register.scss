@@ -32,7 +32,7 @@
 
       i {
         font-size: font-size(font-size-small);
-        display: none;
+        // display: none;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -43,13 +43,13 @@
         display: block;
       }
 
-      span.active {
-        display: none;
-      }
+      // span.active {
+      //   display: none;
+      // }
     }
 
     &--step.active {
-      background-color: var(--color-quinary);
+      background-color: var(--color-primary);
     }
   }
 

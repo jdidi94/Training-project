@@ -3,9 +3,9 @@ const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const secret = require("../config").secret;
 const { OAuth2Client } = require("google-auth-library");
-const mailgun = require("mailgun-js");
-const DOMAIN = process.env.DOMAIN;
-const mg = mailgun({ apiKey: process.env.MAILGUN_API_KEY, domain: DOMAIN });
+// const mailgun = require("mailgun-js");
+// const DOMAIN = process.env.DOMAIN;
+// const mg = mailgun({ apiKey: process.env.MAILGUN_API_KEY, domain: DOMAIN });
 
 const client = new OAuth2Client(
   "261881368887-r96i6dvmjv2olaodl8t54gh66o9ovu2n.apps.googleusercontent.com"
@@ -113,24 +113,24 @@ exports.signUp = async (req, res) => {
       );
 
       console.log("email", email);
-      const data = {
-        from: "noreply@gmail.com.com",
-        to: email,
-        subject: "VLV Verify account",
-        html: `<p>enjoy an experience with huge number of villas to rent and buy<p>
-        <a href="${process.env.URL_ACTIVATION}/${Token}" >Verify account</a>`,
-      };
+      // const data = {
+      //   from: "noreply@gmail.com.com",
+      //   to: email,
+      //   subject: "VLV Verify account",
+      //   html: `<p>enjoy an experience with huge number of villas to rent and buy<p>
+      //   <a href="${process.env.URL_ACTIVATION}/${Token}" >Verify account</a>`,
+      // };
 
-      mg.messages().send(data, function (error, body) {
-        if (error) {
-          return res.status(400).json({ errors: error.message });
-        }
-        return res.status(200).json({
-          user: {
-            message: "Email has been sent, please activate your account",
-          },
-        });
-      });
+      // mg.messages().send(data, function (error, body) {
+      //   if (error) {
+      //     return res.status(400).json({ errors: error.message });
+      //   }
+      //   return res.status(200).json({
+      //     user: {
+      //       message: "Email has been sent, please activate your account",
+      //     },
+      //   });
+      // });
     }
   } catch (err) {
     res.send(err.message);
