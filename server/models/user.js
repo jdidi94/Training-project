@@ -5,14 +5,18 @@ const jwt = require("jsonwebtoken");
 const secret = require("../config").secret;
 const UserSchema = new mongoose.Schema(
   {
-    username: {
+    firstName: {
       type: String,
       lowercase: true,
-      unique: true,
       required: [true, "can't be blank"],
-      match: [/^[a-zA-Z0-9]+$/, "is invalid"],
       index: true,
     },
+    lastName: {
+      type: String,
+      lowercase: true,
+      index: true,
+    },
+
     email: {
       type: String,
       lowercase: true,
@@ -21,13 +25,14 @@ const UserSchema = new mongoose.Schema(
       match: [/\S+@\S+\.\S+/, "is invalid"],
       index: true,
     },
-    bio: String,
-    image: String,
-    favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: "Article" }],
-    following: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    // bio: String,
+    // image: String,
+
+    dateOfBirth: String,
+    number: Number,
+    gender: String,
     hash: String,
     salt: String,
-    phone: Number,
   },
   { timestamps: true }
 );
@@ -52,7 +57,7 @@ UserSchema.methods.generateJWT = function () {
   return jwt.sign(
     {
       id: this._id,
-      username: this.username,
+      firstName: this.firstName,
       exp: parseInt(exp.getTime() / 1000),
     },
     secret
@@ -60,21 +65,21 @@ UserSchema.methods.generateJWT = function () {
 };
 UserSchema.methods.toAuthJSON = function () {
   return {
-    username: this.username,
+    firstName: this.firstName,
+    lastName: this.lastName,
     email: this.email,
     token: this.generateJWT(),
-    bio: this.bio,
-    image: this.image,
+    number: this.number,
+    dateOfBirth: this.dateOfBirth,
   };
 };
 
 UserSchema.methods.toProfileJSONFor = function (user) {
   return {
-    username: this.username,
+    firstName: this.firstName,
     bio: this.bio,
     image:
       this.image || "https://static.productionready.io/images/smiley-cyrus.jpg",
-    following: user ? user.isFollowing(this._id) : false,
   };
 };
 
